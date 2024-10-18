@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="greeting">Hello World!</string>
+    <string name="app_title">计算器</string>
+    <string name="default_calc_value">0</string>
 </resources>
