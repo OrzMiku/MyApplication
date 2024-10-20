@@ -1,4 +1,4 @@
-package com.example.myapplication
+package show.miku.myapplication
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import com.example.myapplication.R
 
 class MainActivity : ComponentActivity() {
     private val debugTag = "Debug"

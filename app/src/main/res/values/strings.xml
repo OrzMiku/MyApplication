@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">我的APP</string>
     <string name="app_title">计算器</string>
 
     <string name="num_0">0</string>
