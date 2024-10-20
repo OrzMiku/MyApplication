@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -7,40 +8,39 @@ import android.widget.TextView
 import androidx.activity.ComponentActivity
 
 class MainActivity : ComponentActivity() {
-    private val mTag = "MainActivity"
-    private lateinit var display: TextView;
+    private val debugTag = "Debug"
+    private lateinit var display: TextView
     private var isTypingNewNumber = true
     private var currentNumber = "0"
     private var previousNumber = "0"
     private var operator = ""
 
     // ----- ids ----- //
-    private val num_ids = arrayOf(
+    private val numIds = arrayOf(
         R.id.button_num_7, R.id.button_num_8, R.id.button_num_9, R.id.button_num_4,
         R.id.button_num_5, R.id.button_num_6, R.id.button_num_1, R.id.button_num_2,
-        R.id.button_num_3, R.id.button_num_0, R.id.button_decimal
+        R.id.button_num_3, R.id.button_num_0, R.id.button_num_decimal
     )
-    private val op_ids =  arrayOf(
+    private val opIds =  arrayOf(
         R.id.button_op_add, R.id.button_op_sub, R.id.button_op_mul, R.id.button_op_div
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(mTag, "onCreate Called")
         setContentView(R.layout.main_layout)
-        display = findViewById(R.id.calculator_display);
+        display = findViewById(R.id.calculator_display)
         setupButtons()
     }
 
     private fun setupButtons(){
-        num_ids.forEach { id ->
+        numIds.forEach { id ->
             val button: Button = findViewById(id)
             button.setOnClickListener{
                 appendNumberToDisplay(button.text.toString())
             }
         }
 
-        op_ids.forEach { buttonId ->
+        opIds.forEach { buttonId ->
             val button = findViewById<Button>(buttonId)
             button.setOnClickListener { view ->
                 setOperator(view.tag.toString())
@@ -48,16 +48,17 @@ class MainActivity : ComponentActivity() {
         }
 
         // 等号按钮
-        findViewById<Button>(R.id.button_equal).setOnClickListener { calculateResult() }
+        findViewById<Button>(R.id.button_op_equal).setOnClickListener { calculateResult() }
 
         // 清除按钮
-        findViewById<Button>(R.id.button_clear).setOnClickListener { clearDisplay() }
+        findViewById<Button>(R.id.button_op_clear).setOnClickListener { clearDisplay() }
 
         // 全清除按钮
-        findViewById<Button>(R.id.button_all_clear).setOnClickListener { clearAll() }
+        findViewById<Button>(R.id.button_op_all_clear).setOnClickListener { clearAll() }
     }
 
     private fun setOperator(op: String) {
+        Log.d(debugTag, isTypingNewNumber.toString())
         if (!isTypingNewNumber) {
             calculateResult()
         }
@@ -67,12 +68,15 @@ class MainActivity : ComponentActivity() {
         isTypingNewNumber = true
     }
 
+    @SuppressLint("SetTextI18n")
     private fun appendNumberToDisplay(number: String){
         if (isTypingNewNumber) {
             display.text = number
+            currentNumber = number
             isTypingNewNumber = false
         } else {
             display.text = display.text.toString() + number
+            currentNumber += number
         }
     }
 
@@ -90,7 +94,7 @@ class MainActivity : ComponentActivity() {
             operator = ""
             isTypingNewNumber = true
         } catch (e: Exception) {
-            display.text = "Error"
+            display.text = getString(R.string.error_msg)
             isTypingNewNumber = true
             operator = ""
         }

@@ -1,5 +1,27 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="app_title">计算器</string>
-    <string name="default_calc_value">0</string>
+
+    <string name="num_0">0</string>
+    <string name="num_1">1</string>
+    <string name="num_2">2</string>
+    <string name="num_3">3</string>
+    <string name="num_4">4</string>
+    <string name="num_5">5</string>
+    <string name="num_6">6</string>
+    <string name="num_7">7</string>
+    <string name="num_8">8</string>
+    <string name="num_9">9</string>
+    <string name="num_decimal">.</string>
+
+    <string name="op_add">+</string>
+    <string name="op_sub">-</string>
+    <string name="op_mul">*</string>
+    <string name="op_div">/</string>
+    <string name="op_equal">=</string>
+
+    <string name="op_clear">C</string>
+    <string name="op_all_clear">AC</string>
+
+    <string name="error_msg">Error</string>
 </resources>
