@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Exp3</string>
+    <string name="text_class">班级</string>
+    <string name="text_name">姓名</string>
+</resources>
